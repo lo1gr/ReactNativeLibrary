@@ -1,0 +1,36 @@
+//import
+
+//const reducer = () => []
+
+const reducer = ( state = [], action) => {
+  if(action.type === 'what_to_do') {
+    return action.payload.run_function()
+  }
+  else if (action.type === 'do_something') {
+    //Not so perfect to do it like this:
+    return action.payload.run_function()
+    return state;
+
+    //more correct way
+    //[old state, the new state]
+    return [...state, action.payload]
+  }
+  return state;
+}
+
+const store = Redux.createStore(reducer);
+
+store.getState(); //what is inside the store
+
+const action = {
+  type: 'what_to_do'
+  payload: 'where_to_do'
+}
+
+store.dispatch(action);
+
+const actionTwo = {
+  type: 'do_something',
+  payload: 'perform_on_this'
+}
+store.dispatch(actionTwo)
